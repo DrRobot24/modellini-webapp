@@ -34,9 +34,9 @@ amplify/backend/.temp
 build/
 dist/
 node_modules/
-aws-exports.js
-awsconfiguration.json
-amplifyconfiguration.json
+# questo non si deve ignorare ! >>>> aws-exports.js 
+# manco questo > awsconfiguration.json
+# e questo pure ! > amplifyconfiguration.json
 amplifyconfiguration.dart
 amplify-build-config.json
 amplify-gradle-config.json

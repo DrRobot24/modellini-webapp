@@ -1,29 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import { withAuthenticator } from '@aws-amplify/ui-react';
 import { fetchUserAttributes, getCurrentUser, signOut } from 'aws-amplify/auth';
-import * as Auth from 'aws-amplify/auth';
 import { generateClient } from 'aws-amplify/api';
 import { ModellinoCreateForm } from './ui-components';
-import { createModellino } from './graphql/mutations';
+import { createModellino, deleteModellino } from './graphql/mutations';
 import { listModellinos } from './graphql/queries';
 import Header from './components/Header';
+import ModellinoList from './components/ModellinoList';
 
 const client = generateClient();
 
-function App({ user: initialUser }) {
+function App({ signOut: amplifySignOut, user: initialUser }) {
   const [user, setUser] = useState(initialUser);
   const [modellini, setModellini] = useState([]);
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function initApp() {
+      setIsLoading(true);
       try {
         await loadUserInfo();
         await fetchModellini();
       } catch (error) {
         console.error('Error initializing app', error);
         setError('Errore nell\'inizializzazione dell\'app: ' + error.message);
+      } finally {
+        setIsLoading(false);
       }
     }
     initApp();
@@ -31,18 +35,18 @@ function App({ user: initialUser }) {
 
   async function loadUserInfo() {
     try {
-      const currentUser = await Auth.getCurrentUser();
-      const userAttributes = await Auth.fetchUserAttributes();
+      const currentUser = await getCurrentUser();
+      const userAttributes = await fetchUserAttributes();
       setUser({ ...currentUser, attributes: userAttributes });
     } catch (e) {
       console.error('Error fetching user data', e);
       setError('Errore nel caricamento delle informazioni dell\'utente');
+      throw e;
     }
   }
 
   async function fetchModellini() {
     try {
-      const currentSession = await Auth.getCurrentUser();
       const modellinoData = await client.graphql({
         query: listModellinos,
         authMode: 'AMAZON_COGNITO_USER_POOLS'
@@ -51,11 +55,8 @@ function App({ user: initialUser }) {
       setModellini(modellinoData.data.listModellinos.items);
     } catch (error) {
       console.error('error fetching modellini', error);
-      if (error.message === 'No current user') {
-        setError('Utente non autenticato. Effettua il login.');
-      } else {
-        setError('Errore nel caricamento dei modellini: ' + error.message);
-      }
+      setError('Errore nel caricamento dei modellini: ' + error.message);
+      throw error;
     }
   }
 
@@ -69,17 +70,45 @@ function App({ user: initialUser }) {
       setSuccessMessage('Modellino creato con successo!');
       fetchModellini();
     } catch (err) {
-      setError('Errore nella creazione del modellino');
+      setError('Errore nella creazione del modellino: ' + err.message);
     }
   };
 
-  if (!user) {
+  const handleUpdateModellino = (modellino) => {
+    // Implementare la logica di aggiornamento
+    console.log('Aggiornamento modellino:', modellino);
+  };
+
+  const handleDeleteModellino = async (id) => {
+    try {
+      await client.graphql({
+        query: deleteModellino,
+        variables: { input: { id } },
+        authMode: 'AMAZON_COGNITO_USER_POOLS'
+      });
+      setSuccessMessage('Modellino eliminato con successo!');
+      fetchModellini();
+    } catch (err) {
+      setError('Errore nell\'eliminazione del modellino: ' + err.message);
+    }
+  };
+
+  const handleSignOut = async () => {
+    try {
+      await amplifySignOut();
+    } catch (error) {
+      console.error('Error signing out:', error);
+      setError('Errore durante il logout: ' + error.message);
+    }
+  };
+
+  if (isLoading) {
     return <div>Caricamento...</div>;
   }
 
   return (
     <div>
-      <Header signOut={signOut} user={user} />
+      <Header signOut={handleSignOut} user={user} />
       <div className="container mx-auto p-4">
         <h1 className="text-2xl font-bold mb-4">Modellini da Competizione</h1>
         {error && <p className="text-red-500 mb-4">{error}</p>}
@@ -92,22 +121,11 @@ function App({ user: initialUser }) {
           <h2 className="text-xl font-bold mb-2">Crea un nuovo modellino</h2>
           <ModellinoCreateForm onSubmit={handleCreateModellino} />
         </div>
-        <div>
-          <h2 className="text-xl font-bold mb-2">I tuoi modellini</h2>
-          {modellini.length > 0 ? (
-            modellini.map((modellino) => (
-              <div key={modellino.id} className="mb-4 p-4 border rounded">
-                <p>Descrizione: {modellino.Descrizione}</p>
-                <p>Classe: {modellino.ClasseAppartenenza}</p>
-                <p>Categoria: {modellino.Categoria}</p>
-                <p>Tipo di Partecipazione: {modellino.TipodiPartecipazione}</p>
-                {modellino.PremioSpeciale && <p>Premio Speciale: {modellino.PremioSpeciale}</p>}
-              </div>
-            ))
-          ) : (
-            <p>Nessun modellino presente. Crea il tuo primo modellino!</p>
-          )}
-        </div>
+        <ModellinoList 
+          modellini={modellini}
+          onUpdate={handleUpdateModellino}
+          onDelete={handleDeleteModellino}
+        />
       </div>
     </div>
   );
