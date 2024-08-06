@@ -1,6 +1,6 @@
 body {
-  background-color: #f0f4f8;
-  color: #333;
+  background-color: #121212;
+  color: #e0e0e0;
   font-family: Arial, sans-serif;
 }
 
@@ -11,21 +11,21 @@ body {
 }
 
 h1, h2 {
-  color: #2c3e50;
+  color: #4fc29a;
 }
 
 input, select {
-  background-color: #ffffff;
-  color: #333;
-  border: 1px solid #bdc3c7;
+  background-color: #2a2a2a;
+  color: #e0e0e0;
+  border: 1px solid #444;
   padding: 10px;
   border-radius: 4px;
   margin-bottom: 10px;
 }
 
 button {
-  background-color: #3498db;
-  color: #ffffff;
+  background-color: #4fc29a;
+  color: #121212;
   border: none;
   padding: 10px 20px;
   border-radius: 4px;
@@ -34,7 +34,7 @@ button {
 }
 
 button:hover {
-  background-color: #2980b9;
+  background-color: #3da982;
 }
 
 .error-message {
@@ -54,16 +54,16 @@ button:hover {
 }
 
 .modellino-item {
-  background-color: #ffffff;
-  border: 1px solid #ecf0f1;
+  background-color: #1e1e1e;
+  border: 1px solid #333;
   border-radius: 4px;
   padding: 15px;
   margin-bottom: 15px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
 .modellino-item h3 {
-  color: #34495e;
+  color: #4fc29a;
   margin-top: 0;
 }
 
@@ -77,16 +77,16 @@ button:hover {
 
 /* Stili per i form */
 form {
-  background-color: #ffffff;
+  background-color: #c93030;
   padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 /* Stili per l'header */
 header {
-  background-color: #34495e;
-  color: #ffffff;
+  background-color: #1e1e1e;
+  color: #e0e0e0;
   padding: 10px 0;
 }
 
@@ -98,7 +98,7 @@ header .container {
 
 header h1 {
   margin: 0;
-  color: #ffffff;
+  color: #4fc29a;
 }
 
 /* Responsive design */
