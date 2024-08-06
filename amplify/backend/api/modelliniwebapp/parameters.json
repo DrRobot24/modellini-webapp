@@ -1,0 +1,12 @@
+{
+  "AppSyncApiName": "modelliniwebapp",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authmodelliniwebappbe0778ae",
+      "Outputs.UserPoolId"
+    ]
+  },
+  "AuthModeLastUpdated": "2024-08-03T09:42:33.385Z"
+}

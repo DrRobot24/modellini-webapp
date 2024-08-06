@@ -1,0 +1,9 @@
+type Utente @model @auth(rules: [{allow: owner}]) {
+  id: ID!
+  cognitoId: String
+  nome: String!
+  cognome: String!
+  telefono: AWSPhone!
+  email: AWSEmail!
+}
+ 
