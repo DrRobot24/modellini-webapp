@@ -1,18 +1,18 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createUtente = /* GraphQL */ `
-  mutation CreateUtente(
-    $input: CreateUtenteInput!
-    $condition: ModelUtenteConditionInput
+export const createModellino = /* GraphQL */ `
+  mutation CreateModellino(
+    $input: CreateModellinoInput!
+    $condition: ModelModellinoConditionInput
   ) {
-    createUtente(input: $input, condition: $condition) {
+    createModellino(input: $input, condition: $condition) {
       id
-      cognitoId
-      nome
-      cognome
-      telefono
-      email
+      Descrizione
+      ClasseAppartenenza
+      Categoria
+      TipodiPartecipazione
+      PremioSpeciale
       createdAt
       updatedAt
       owner
@@ -20,18 +20,18 @@ export const createUtente = /* GraphQL */ `
     }
   }
 `;
-export const updateUtente = /* GraphQL */ `
-  mutation UpdateUtente(
-    $input: UpdateUtenteInput!
-    $condition: ModelUtenteConditionInput
+export const updateModellino = /* GraphQL */ `
+  mutation UpdateModellino(
+    $input: UpdateModellinoInput!
+    $condition: ModelModellinoConditionInput
   ) {
-    updateUtente(input: $input, condition: $condition) {
+    updateModellino(input: $input, condition: $condition) {
       id
-      cognitoId
-      nome
-      cognome
-      telefono
-      email
+      Descrizione
+      ClasseAppartenenza
+      Categoria
+      TipodiPartecipazione
+      PremioSpeciale
       createdAt
       updatedAt
       owner
@@ -39,18 +39,18 @@ export const updateUtente = /* GraphQL */ `
     }
   }
 `;
-export const deleteUtente = /* GraphQL */ `
-  mutation DeleteUtente(
-    $input: DeleteUtenteInput!
-    $condition: ModelUtenteConditionInput
+export const deleteModellino = /* GraphQL */ `
+  mutation DeleteModellino(
+    $input: DeleteModellinoInput!
+    $condition: ModelModellinoConditionInput
   ) {
-    deleteUtente(input: $input, condition: $condition) {
+    deleteModellino(input: $input, condition: $condition) {
       id
-      cognitoId
-      nome
-      cognome
-      telefono
-      email
+      Descrizione
+      ClasseAppartenenza
+      Categoria
+      TipodiPartecipazione
+      PremioSpeciale
       createdAt
       updatedAt
       owner

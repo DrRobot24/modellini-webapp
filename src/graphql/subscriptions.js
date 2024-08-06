@@ -1,18 +1,18 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateUtente = /* GraphQL */ `
-  subscription OnCreateUtente(
-    $filter: ModelSubscriptionUtenteFilterInput
+export const onCreateModellino = /* GraphQL */ `
+  subscription OnCreateModellino(
+    $filter: ModelSubscriptionModellinoFilterInput
     $owner: String
   ) {
-    onCreateUtente(filter: $filter, owner: $owner) {
+    onCreateModellino(filter: $filter, owner: $owner) {
       id
-      cognitoId
-      nome
-      cognome
-      telefono
-      email
+      Descrizione
+      ClasseAppartenenza
+      Categoria
+      TipodiPartecipazione
+      PremioSpeciale
       createdAt
       updatedAt
       owner
@@ -20,18 +20,18 @@ export const onCreateUtente = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateUtente = /* GraphQL */ `
-  subscription OnUpdateUtente(
-    $filter: ModelSubscriptionUtenteFilterInput
+export const onUpdateModellino = /* GraphQL */ `
+  subscription OnUpdateModellino(
+    $filter: ModelSubscriptionModellinoFilterInput
     $owner: String
   ) {
-    onUpdateUtente(filter: $filter, owner: $owner) {
+    onUpdateModellino(filter: $filter, owner: $owner) {
       id
-      cognitoId
-      nome
-      cognome
-      telefono
-      email
+      Descrizione
+      ClasseAppartenenza
+      Categoria
+      TipodiPartecipazione
+      PremioSpeciale
       createdAt
       updatedAt
       owner
@@ -39,18 +39,18 @@ export const onUpdateUtente = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteUtente = /* GraphQL */ `
-  subscription OnDeleteUtente(
-    $filter: ModelSubscriptionUtenteFilterInput
+export const onDeleteModellino = /* GraphQL */ `
+  subscription OnDeleteModellino(
+    $filter: ModelSubscriptionModellinoFilterInput
     $owner: String
   ) {
-    onDeleteUtente(filter: $filter, owner: $owner) {
+    onDeleteModellino(filter: $filter, owner: $owner) {
       id
-      cognitoId
-      nome
-      cognome
-      telefono
-      email
+      Descrizione
+      ClasseAppartenenza
+      Categoria
+      TipodiPartecipazione
+      PremioSpeciale
       createdAt
       updatedAt
       owner

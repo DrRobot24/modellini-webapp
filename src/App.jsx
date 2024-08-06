@@ -1,160 +1,116 @@
 import React, { useState, useEffect } from 'react';
 import { withAuthenticator } from '@aws-amplify/ui-react';
 import { fetchUserAttributes, getCurrentUser, signOut } from 'aws-amplify/auth';
+import * as Auth from 'aws-amplify/auth';
 import { generateClient } from 'aws-amplify/api';
-import { UtenteCreateForm } from './ui-components';
-import { createUtente, updateUtente } from './graphql/mutations';
-import { listUtentes } from './graphql/queries';
+import { ModellinoCreateForm } from './ui-components';
+import { createModellino } from './graphql/mutations';
+import { listModellinos } from './graphql/queries';
 import Header from './components/Header';
-
-import { ThemeProvider, createTheme } from "@aws-amplify/ui-react";
-import { studioTheme } from './ui-components';
-
-const updatedTheme = createTheme({
-    // Extend the theme to update the button color
-    name: "my-theme-updates", 
-    tokens: {
-        components: {
-            button: {
-                primary: {
-                    backgroundColor: {
-                        value: "#b71c1c"
-                    },
-                },
-            },
-        },
-    },
-}, studioTheme)
 
 const client = generateClient();
 
 function App({ user: initialUser }) {
   const [user, setUser] = useState(initialUser);
-  const [userData, setUserData] = useState(null);
+  const [modellini, setModellini] = useState([]);
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
 
   useEffect(() => {
-    async function loadUserInfo() {
+    async function initApp() {
       try {
-        const currentUser = await getCurrentUser();
-        const userAttributes = await fetchUserAttributes();
-        setUser({ ...currentUser, attributes: userAttributes });
-
-        const { data } = await client.graphql({
-          query: listUtentes,
-          variables: { 
-            filter: { cognitoId: { eq: currentUser.userId } }
-          }
-        });
-
-        if (data.listUtentes.items.length > 0) {
-          setUserData(data.listUtentes.items[0]);
-        } else {
-          setUserData({
-            cognitoId: currentUser.userId,
-            email: userAttributes.email,
-            nome: userAttributes.name || '',
-            cognome: userAttributes.family_name || '',
-            telefono: userAttributes.phone_number || ''
-          });
-        }
-      } catch (e) {
-        console.error('Error fetching user data', e);
-        setError('Errore nel caricamento delle informazioni dell\'utente: ' + (e.message || 'Errore sconosciuto'));
+        await loadUserInfo();
+        await fetchModellini();
+      } catch (error) {
+        console.error('Error initializing app', error);
+        setError('Errore nell\'inizializzazione dell\'app: ' + error.message);
       }
     }
-    
-    loadUserInfo();
+    initApp();
   }, []);
 
-  const handleSubmit = async (fields) => {
+  async function loadUserInfo() {
     try {
-      let formattedPhone = fields.telefono.replace(/\D/g, '');
-      if (!formattedPhone.startsWith('+')) {
-        formattedPhone = '+' + formattedPhone;
-      }
+      const currentUser = await Auth.getCurrentUser();
+      const userAttributes = await Auth.fetchUserAttributes();
+      setUser({ ...currentUser, attributes: userAttributes });
+    } catch (e) {
+      console.error('Error fetching user data', e);
+      setError('Errore nel caricamento delle informazioni dell\'utente');
+    }
+  }
+
+  async function fetchModellini() {
+    try {
+      const currentSession = await Auth.getCurrentUser();
+      const modellinoData = await client.graphql({
+        query: listModellinos,
+        authMode: 'AMAZON_COGNITO_USER_POOLS'
+      });
       
-      const awsPhoneRegex = /^\+[1-9]\d{1,14}$/;
-      if (!awsPhoneRegex.test(formattedPhone)) {
-        throw new Error('Il numero di telefono non è valido. Dovrebbe essere nel formato internazionale (es. +39XXXXXXXXXX).');
-      }
-
-      const updatedFields = { 
-        ...fields, 
-        telefono: formattedPhone,
-        cognitoId: user.userId,
-        email: user.attributes.email
-      };
-
-      let response;
-      if (userData && userData.id) {
-        response = await client.graphql({
-          query: updateUtente,
-          variables: { input: { id: userData.id, ...updatedFields } }
-        });
-        setUserData(response.data.updateUtente);
+      setModellini(modellinoData.data.listModellinos.items);
+    } catch (error) {
+      console.error('error fetching modellini', error);
+      if (error.message === 'No current user') {
+        setError('Utente non autenticato. Effettua il login.');
       } else {
-        response = await client.graphql({
-          query: createUtente,
-          variables: { input: updatedFields }
-        });
-        setUserData(response.data.createUtente);
+        setError('Errore nel caricamento dei modellini: ' + error.message);
       }
-      setSuccessMessage('Profilo utente salvato con successo!');
-      setError(null);
+    }
+  }
+
+  const handleCreateModellino = async (fields) => {
+    try {
+      await client.graphql({
+        query: createModellino,
+        variables: { input: fields },
+        authMode: 'AMAZON_COGNITO_USER_POOLS'
+      });
+      setSuccessMessage('Modellino creato con successo!');
+      fetchModellini();
     } catch (err) {
-      console.error('Errore nel salvataggio del profilo utente:', err);
-      setError('Si è verificato un errore nel salvataggio del profilo utente: ' + (err.message || 'Errore sconosciuto'));
-      setSuccessMessage(null);
+      setError('Errore nella creazione del modellino');
     }
   };
 
   if (!user) {
-    return <div>Caricamento utente...</div>;
+    return <div>Caricamento...</div>;
   }
 
-  const filterUserData = (data) => {
-    const { id, cognitoId, nome, cognome, telefono, email } = data || {};
-    const { cognitoId: _, ...filteredData } = { id, cognitoId, nome, cognome, telefono, email };
-    return filteredData;
-  };
- 
   return (
     <div>
       <Header signOut={signOut} user={user} />
       <div className="container mx-auto p-4">
-        <div className="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 mb-4" role="alert">
-          <p className="font-bold">ID Utente:</p>
-          <p>{user.userId}</p>
+        <h1 className="text-2xl font-bold mb-4">Modellini da Competizione</h1>
+        {error && <p className="text-red-500 mb-4">{error}</p>}
+        {successMessage && (
+          <p className="text-green-500 mb-4 bg-green-100 border border-green-400 p-2 rounded">
+            {successMessage}
+          </p>
+        )}
+        <div className="mb-8">
+          <h2 className="text-xl font-bold mb-2">Crea un nuovo modellino</h2>
+          <ModellinoCreateForm onSubmit={handleCreateModellino} />
         </div>
-        <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-          <h2 className="text-2xl font-bold mb-4">Profilo Utente</h2>
-          {error && <p className="text-red-500 mb-4">{error}</p>}
-          {successMessage && (
-            <p className="text-green-500 mb-4 bg-green-100 border border-green-400 p-2 rounded">
-              {successMessage}
-            </p>
+        <div>
+          <h2 className="text-xl font-bold mb-2">I tuoi modellini</h2>
+          {modellini.length > 0 ? (
+            modellini.map((modellino) => (
+              <div key={modellino.id} className="mb-4 p-4 border rounded">
+                <p>Descrizione: {modellino.Descrizione}</p>
+                <p>Classe: {modellino.ClasseAppartenenza}</p>
+                <p>Categoria: {modellino.Categoria}</p>
+                <p>Tipo di Partecipazione: {modellino.TipodiPartecipazione}</p>
+                {modellino.PremioSpeciale && <p>Premio Speciale: {modellino.PremioSpeciale}</p>}
+              </div>
+            ))
+          ) : (
+            <p>Nessun modellino presente. Crea il tuo primo modellino!</p>
           )}
-          <UtenteCreateForm
-  onSubmit={handleSubmit}
-  onError={(error) => {
-    console.error('Errore nel form:', error);
-    setError('Si è verificato un errore nel form: ' + (error.message || 'Errore sconosciuto'));
-  }}
-  overrides={{
-    cognitoId: { 
-      display: 'none',
-      required: false,
-      value: user.userId
-    }
-  }}
-  {...filterUserData(userData)}
-/>
         </div>
       </div>
     </div>
   );
 }
 
-export default withAuthenticator (App);
+export default withAuthenticator(App);

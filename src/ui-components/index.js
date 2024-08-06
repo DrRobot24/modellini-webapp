@@ -4,6 +4,6 @@
  * Any changes to this file will be overwritten when running amplify pull. *
  **************************************************************************/
 
-export { default as UtenteCreateForm } from "./UtenteCreateForm";
-export { default as UtenteUpdateForm } from "./UtenteUpdateForm";
+export { default as ModellinoCreateForm } from "./ModellinoCreateForm";
+export { default as ModellinoUpdateForm } from "./ModellinoUpdateForm";
 export { default as studioTheme } from "./studioTheme";

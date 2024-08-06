@@ -1,9 +1,36 @@
-type Utente @model @auth(rules: [{allow: owner}]) {
+enum Premispeciali {
+  TROFEO_NAPOLEONE
+  TROFEO_GARIBALDI
+  TROFEO_JANUSCERIFFU
+}
+
+enum Partecipazione {
+  COMPETITIVO
+  ESPOSITIVO
+}
+
+enum Categorie {
+  A1
+  A2
+  B1
+  B2
+  C1
+  C2
+}
+
+enum Classi {
+  JUNIOR
+  BEGINNER
+  STANDARD
+  MASTER
+}
+
+type Modellino @model @auth(rules: [{allow: owner}]) {
   id: ID!
-  cognitoId: String
-  nome: String!
-  cognome: String!
-  telefono: AWSPhone!
-  email: AWSEmail!
+  Descrizione: String!
+  ClasseAppartenenza: Classi!
+  Categoria: Categorie!
+  TipodiPartecipazione: Partecipazione!
+  PremioSpeciale: Premispeciali
 }
  

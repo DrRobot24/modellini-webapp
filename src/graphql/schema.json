@@ -15,7 +15,7 @@
         "name" : "Query",
         "description" : null,
         "fields" : [ {
-          "name" : "getUtente",
+          "name" : "getModellino",
           "description" : null,
           "args" : [ {
             "name" : "id",
@@ -33,20 +33,20 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Utente",
+            "name" : "Modellino",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "listUtentes",
+          "name" : "listModellinos",
           "description" : null,
           "args" : [ {
             "name" : "filter",
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelUtenteFilterInput",
+              "name" : "ModelModellinoFilterInput",
               "ofType" : null
             },
             "defaultValue" : null
@@ -71,7 +71,7 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "ModelUtenteConnection",
+            "name" : "ModelModellinoConnection",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -83,7 +83,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "OBJECT",
-        "name" : "Utente",
+        "name" : "Modellino",
         "description" : null,
         "fields" : [ {
           "name" : "id",
@@ -101,7 +101,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "cognitoId",
+          "name" : "Descrizione",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -116,62 +116,58 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "nome",
+          "name" : "ClasseAppartenenza",
           "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "NON_NULL",
             "name" : null,
             "ofType" : {
-              "kind" : "SCALAR",
-              "name" : "String",
+              "kind" : "ENUM",
+              "name" : "Classi",
               "ofType" : null
             }
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "cognome",
+          "name" : "Categoria",
           "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "NON_NULL",
             "name" : null,
             "ofType" : {
-              "kind" : "SCALAR",
-              "name" : "String",
+              "kind" : "ENUM",
+              "name" : "Categorie",
               "ofType" : null
             }
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "telefono",
+          "name" : "TipodiPartecipazione",
           "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "NON_NULL",
             "name" : null,
             "ofType" : {
-              "kind" : "SCALAR",
-              "name" : "AWSPhone",
+              "kind" : "ENUM",
+              "name" : "Partecipazione",
               "ofType" : null
             }
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "email",
+          "name" : "PremioSpeciale",
           "description" : null,
           "args" : [ ],
           "type" : {
-            "kind" : "NON_NULL",
-            "name" : null,
-            "ofType" : {
-              "kind" : "SCALAR",
-              "name" : "AWSEmail",
-              "ofType" : null
-            }
+            "kind" : "ENUM",
+            "name" : "Premispeciali",
+            "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
@@ -240,22 +236,115 @@
         "enumValues" : null,
         "possibleTypes" : null
       }, {
-        "kind" : "SCALAR",
-        "name" : "AWSPhone",
-        "description" : "The `AWSPhone` scalar type provided by AWS AppSync, represents a valid Phone Number. Phone numbers are serialized and deserialized as Strings. Segments of the phone number may be whitespace delimited or hyphenated.  The number can specify a country code at the beginning. However, United States numbers without country codes are still considered to be valid.",
+        "kind" : "ENUM",
+        "name" : "Classi",
+        "description" : null,
         "fields" : null,
         "inputFields" : null,
         "interfaces" : null,
-        "enumValues" : null,
+        "enumValues" : [ {
+          "name" : "JUNIOR",
+          "description" : null,
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "BEGINNER",
+          "description" : null,
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "STANDARD",
+          "description" : null,
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "MASTER",
+          "description" : null,
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        } ],
         "possibleTypes" : null
       }, {
-        "kind" : "SCALAR",
-        "name" : "AWSEmail",
-        "description" : "The `AWSEmail` scalar type provided by AWS AppSync, represents an Email address string that complies with [RFC 822](https://www.ietf.org/rfc/rfc822.txt). For example, \"**username@example.com**\" is a valid Email address.",
+        "kind" : "ENUM",
+        "name" : "Categorie",
+        "description" : null,
         "fields" : null,
         "inputFields" : null,
         "interfaces" : null,
-        "enumValues" : null,
+        "enumValues" : [ {
+          "name" : "A1",
+          "description" : null,
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "A2",
+          "description" : null,
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "B1",
+          "description" : null,
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "B2",
+          "description" : null,
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "C1",
+          "description" : null,
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "C2",
+          "description" : null,
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        } ],
+        "possibleTypes" : null
+      }, {
+        "kind" : "ENUM",
+        "name" : "Partecipazione",
+        "description" : null,
+        "fields" : null,
+        "inputFields" : null,
+        "interfaces" : null,
+        "enumValues" : [ {
+          "name" : "COMPETITIVO",
+          "description" : null,
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "ESPOSITIVO",
+          "description" : null,
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        } ],
+        "possibleTypes" : null
+      }, {
+        "kind" : "ENUM",
+        "name" : "Premispeciali",
+        "description" : null,
+        "fields" : null,
+        "inputFields" : null,
+        "interfaces" : null,
+        "enumValues" : [ {
+          "name" : "TROFEO_NAPOLEONE",
+          "description" : null,
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "TROFEO_GARIBALDI",
+          "description" : null,
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "TROFEO_JANUSCERIFFU",
+          "description" : null,
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        } ],
         "possibleTypes" : null
       }, {
         "kind" : "SCALAR",
@@ -268,7 +357,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "OBJECT",
-        "name" : "ModelUtenteConnection",
+        "name" : "ModelModellinoConnection",
         "description" : null,
         "fields" : [ {
           "name" : "items",
@@ -282,7 +371,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "OBJECT",
-                "name" : "Utente",
+                "name" : "Modellino",
                 "ofType" : null
               }
             }
@@ -307,7 +396,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "ModelUtenteFilterInput",
+        "name" : "ModelModellinoFilterInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -320,7 +409,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "cognitoId",
+          "name" : "Descrizione",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -329,38 +418,38 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "nome",
+          "name" : "ClasseAppartenenza",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelStringInput",
+            "name" : "ModelClassiInput",
             "ofType" : null
           },
           "defaultValue" : null
         }, {
-          "name" : "cognome",
+          "name" : "Categoria",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelStringInput",
+            "name" : "ModelCategorieInput",
             "ofType" : null
           },
           "defaultValue" : null
         }, {
-          "name" : "telefono",
+          "name" : "TipodiPartecipazione",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelStringInput",
+            "name" : "ModelPartecipazioneInput",
             "ofType" : null
           },
           "defaultValue" : null
         }, {
-          "name" : "email",
+          "name" : "PremioSpeciale",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelStringInput",
+            "name" : "ModelPremispecialiInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -390,7 +479,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelUtenteFilterInput",
+              "name" : "ModelModellinoFilterInput",
               "ofType" : null
             }
           },
@@ -403,7 +492,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelUtenteFilterInput",
+              "name" : "ModelModellinoFilterInput",
               "ofType" : null
             }
           },
@@ -413,7 +502,7 @@
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelUtenteFilterInput",
+            "name" : "ModelModellinoFilterInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -844,11 +933,119 @@
         "enumValues" : null,
         "possibleTypes" : null
       }, {
+        "kind" : "INPUT_OBJECT",
+        "name" : "ModelClassiInput",
+        "description" : null,
+        "fields" : null,
+        "inputFields" : [ {
+          "name" : "eq",
+          "description" : null,
+          "type" : {
+            "kind" : "ENUM",
+            "name" : "Classi",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "ne",
+          "description" : null,
+          "type" : {
+            "kind" : "ENUM",
+            "name" : "Classi",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        } ],
+        "interfaces" : null,
+        "enumValues" : null,
+        "possibleTypes" : null
+      }, {
+        "kind" : "INPUT_OBJECT",
+        "name" : "ModelCategorieInput",
+        "description" : null,
+        "fields" : null,
+        "inputFields" : [ {
+          "name" : "eq",
+          "description" : null,
+          "type" : {
+            "kind" : "ENUM",
+            "name" : "Categorie",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "ne",
+          "description" : null,
+          "type" : {
+            "kind" : "ENUM",
+            "name" : "Categorie",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        } ],
+        "interfaces" : null,
+        "enumValues" : null,
+        "possibleTypes" : null
+      }, {
+        "kind" : "INPUT_OBJECT",
+        "name" : "ModelPartecipazioneInput",
+        "description" : null,
+        "fields" : null,
+        "inputFields" : [ {
+          "name" : "eq",
+          "description" : null,
+          "type" : {
+            "kind" : "ENUM",
+            "name" : "Partecipazione",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "ne",
+          "description" : null,
+          "type" : {
+            "kind" : "ENUM",
+            "name" : "Partecipazione",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        } ],
+        "interfaces" : null,
+        "enumValues" : null,
+        "possibleTypes" : null
+      }, {
+        "kind" : "INPUT_OBJECT",
+        "name" : "ModelPremispecialiInput",
+        "description" : null,
+        "fields" : null,
+        "inputFields" : [ {
+          "name" : "eq",
+          "description" : null,
+          "type" : {
+            "kind" : "ENUM",
+            "name" : "Premispeciali",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "ne",
+          "description" : null,
+          "type" : {
+            "kind" : "ENUM",
+            "name" : "Premispeciali",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        } ],
+        "interfaces" : null,
+        "enumValues" : null,
+        "possibleTypes" : null
+      }, {
         "kind" : "OBJECT",
         "name" : "Mutation",
         "description" : null,
         "fields" : [ {
-          "name" : "createUtente",
+          "name" : "createModellino",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -858,7 +1055,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "CreateUtenteInput",
+                "name" : "CreateModellinoInput",
                 "ofType" : null
               }
             },
@@ -868,20 +1065,20 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelUtenteConditionInput",
+              "name" : "ModelModellinoConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Utente",
+            "name" : "Modellino",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "updateUtente",
+          "name" : "updateModellino",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -891,7 +1088,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "UpdateUtenteInput",
+                "name" : "UpdateModellinoInput",
                 "ofType" : null
               }
             },
@@ -901,20 +1098,20 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelUtenteConditionInput",
+              "name" : "ModelModellinoConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Utente",
+            "name" : "Modellino",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "deleteUtente",
+          "name" : "deleteModellino",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -924,7 +1121,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "DeleteUtenteInput",
+                "name" : "DeleteModellinoInput",
                 "ofType" : null
               }
             },
@@ -934,14 +1131,14 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelUtenteConditionInput",
+              "name" : "ModelModellinoConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Utente",
+            "name" : "Modellino",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -953,7 +1150,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "CreateUtenteInput",
+        "name" : "CreateModellinoInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -966,7 +1163,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "cognitoId",
+          "name" : "Descrizione",
           "description" : null,
           "type" : {
             "kind" : "NON_NULL",
@@ -979,55 +1176,51 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "nome",
+          "name" : "ClasseAppartenenza",
           "description" : null,
           "type" : {
             "kind" : "NON_NULL",
             "name" : null,
             "ofType" : {
-              "kind" : "SCALAR",
-              "name" : "String",
+              "kind" : "ENUM",
+              "name" : "Classi",
               "ofType" : null
             }
           },
           "defaultValue" : null
         }, {
-          "name" : "cognome",
+          "name" : "Categoria",
           "description" : null,
           "type" : {
             "kind" : "NON_NULL",
             "name" : null,
             "ofType" : {
-              "kind" : "SCALAR",
-              "name" : "String",
+              "kind" : "ENUM",
+              "name" : "Categorie",
               "ofType" : null
             }
           },
           "defaultValue" : null
         }, {
-          "name" : "telefono",
+          "name" : "TipodiPartecipazione",
           "description" : null,
           "type" : {
             "kind" : "NON_NULL",
             "name" : null,
             "ofType" : {
-              "kind" : "SCALAR",
-              "name" : "AWSPhone",
+              "kind" : "ENUM",
+              "name" : "Partecipazione",
               "ofType" : null
             }
           },
           "defaultValue" : null
         }, {
-          "name" : "email",
+          "name" : "PremioSpeciale",
           "description" : null,
           "type" : {
-            "kind" : "NON_NULL",
-            "name" : null,
-            "ofType" : {
-              "kind" : "SCALAR",
-              "name" : "AWSEmail",
-              "ofType" : null
-            }
+            "kind" : "ENUM",
+            "name" : "Premispeciali",
+            "ofType" : null
           },
           "defaultValue" : null
         } ],
@@ -1036,11 +1229,11 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "ModelUtenteConditionInput",
+        "name" : "ModelModellinoConditionInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
-          "name" : "cognitoId",
+          "name" : "Descrizione",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -1049,38 +1242,38 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "nome",
+          "name" : "ClasseAppartenenza",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelStringInput",
+            "name" : "ModelClassiInput",
             "ofType" : null
           },
           "defaultValue" : null
         }, {
-          "name" : "cognome",
+          "name" : "Categoria",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelStringInput",
+            "name" : "ModelCategorieInput",
             "ofType" : null
           },
           "defaultValue" : null
         }, {
-          "name" : "telefono",
+          "name" : "TipodiPartecipazione",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelStringInput",
+            "name" : "ModelPartecipazioneInput",
             "ofType" : null
           },
           "defaultValue" : null
         }, {
-          "name" : "email",
+          "name" : "PremioSpeciale",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelStringInput",
+            "name" : "ModelPremispecialiInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -1092,7 +1285,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelUtenteConditionInput",
+              "name" : "ModelModellinoConditionInput",
               "ofType" : null
             }
           },
@@ -1105,7 +1298,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelUtenteConditionInput",
+              "name" : "ModelModellinoConditionInput",
               "ofType" : null
             }
           },
@@ -1115,7 +1308,7 @@
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelUtenteConditionInput",
+            "name" : "ModelModellinoConditionInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -1152,7 +1345,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "UpdateUtenteInput",
+        "name" : "UpdateModellinoInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -1169,7 +1362,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "cognitoId",
+          "name" : "Descrizione",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -1178,38 +1371,38 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "nome",
+          "name" : "ClasseAppartenenza",
           "description" : null,
           "type" : {
-            "kind" : "SCALAR",
-            "name" : "String",
+            "kind" : "ENUM",
+            "name" : "Classi",
             "ofType" : null
           },
           "defaultValue" : null
         }, {
-          "name" : "cognome",
+          "name" : "Categoria",
           "description" : null,
           "type" : {
-            "kind" : "SCALAR",
-            "name" : "String",
+            "kind" : "ENUM",
+            "name" : "Categorie",
             "ofType" : null
           },
           "defaultValue" : null
         }, {
-          "name" : "telefono",
+          "name" : "TipodiPartecipazione",
           "description" : null,
           "type" : {
-            "kind" : "SCALAR",
-            "name" : "AWSPhone",
+            "kind" : "ENUM",
+            "name" : "Partecipazione",
             "ofType" : null
           },
           "defaultValue" : null
         }, {
-          "name" : "email",
+          "name" : "PremioSpeciale",
           "description" : null,
           "type" : {
-            "kind" : "SCALAR",
-            "name" : "AWSEmail",
+            "kind" : "ENUM",
+            "name" : "Premispeciali",
             "ofType" : null
           },
           "defaultValue" : null
@@ -1219,7 +1412,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "DeleteUtenteInput",
+        "name" : "DeleteModellinoInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -1244,14 +1437,14 @@
         "name" : "Subscription",
         "description" : null,
         "fields" : [ {
-          "name" : "onCreateUtente",
+          "name" : "onCreateModellino",
           "description" : null,
           "args" : [ {
             "name" : "filter",
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelSubscriptionUtenteFilterInput",
+              "name" : "ModelSubscriptionModellinoFilterInput",
               "ofType" : null
             },
             "defaultValue" : null
@@ -1267,20 +1460,20 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Utente",
+            "name" : "Modellino",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onUpdateUtente",
+          "name" : "onUpdateModellino",
           "description" : null,
           "args" : [ {
             "name" : "filter",
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelSubscriptionUtenteFilterInput",
+              "name" : "ModelSubscriptionModellinoFilterInput",
               "ofType" : null
             },
             "defaultValue" : null
@@ -1296,20 +1489,20 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Utente",
+            "name" : "Modellino",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onDeleteUtente",
+          "name" : "onDeleteModellino",
           "description" : null,
           "args" : [ {
             "name" : "filter",
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelSubscriptionUtenteFilterInput",
+              "name" : "ModelSubscriptionModellinoFilterInput",
               "ofType" : null
             },
             "defaultValue" : null
@@ -1325,7 +1518,7 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Utente",
+            "name" : "Modellino",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -1337,7 +1530,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "ModelSubscriptionUtenteFilterInput",
+        "name" : "ModelSubscriptionModellinoFilterInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -1350,7 +1543,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "cognitoId",
+          "name" : "Descrizione",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -1359,7 +1552,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "nome",
+          "name" : "ClasseAppartenenza",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -1368,7 +1561,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "cognome",
+          "name" : "Categoria",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -1377,7 +1570,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "telefono",
+          "name" : "TipodiPartecipazione",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -1386,7 +1579,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "email",
+          "name" : "PremioSpeciale",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -1420,7 +1613,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelSubscriptionUtenteFilterInput",
+              "name" : "ModelSubscriptionModellinoFilterInput",
               "ofType" : null
             }
           },
@@ -1433,7 +1626,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelSubscriptionUtenteFilterInput",
+              "name" : "ModelSubscriptionModellinoFilterInput",
               "ofType" : null
             }
           },
@@ -1710,6 +1903,25 @@
         "enumValues" : null,
         "possibleTypes" : null
       }, {
+        "kind" : "ENUM",
+        "name" : "ModelSortDirection",
+        "description" : null,
+        "fields" : null,
+        "inputFields" : null,
+        "interfaces" : null,
+        "enumValues" : [ {
+          "name" : "ASC",
+          "description" : null,
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "DESC",
+          "description" : null,
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        } ],
+        "possibleTypes" : null
+      }, {
         "kind" : "INPUT_OBJECT",
         "name" : "ModelSubscriptionBooleanInput",
         "description" : null,
@@ -1738,117 +1950,6 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "ModelSubscriptionFloatInput",
-        "description" : null,
-        "fields" : null,
-        "inputFields" : [ {
-          "name" : "ne",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Float",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "eq",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Float",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "le",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Float",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "lt",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Float",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "ge",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Float",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "gt",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Float",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "between",
-          "description" : null,
-          "type" : {
-            "kind" : "LIST",
-            "name" : null,
-            "ofType" : {
-              "kind" : "SCALAR",
-              "name" : "Float",
-              "ofType" : null
-            }
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "in",
-          "description" : null,
-          "type" : {
-            "kind" : "LIST",
-            "name" : null,
-            "ofType" : {
-              "kind" : "SCALAR",
-              "name" : "Float",
-              "ofType" : null
-            }
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "notIn",
-          "description" : null,
-          "type" : {
-            "kind" : "LIST",
-            "name" : null,
-            "ofType" : {
-              "kind" : "SCALAR",
-              "name" : "Float",
-              "ofType" : null
-            }
-          },
-          "defaultValue" : null
-        } ],
-        "interfaces" : null,
-        "enumValues" : null,
-        "possibleTypes" : null
-      }, {
-        "kind" : "SCALAR",
-        "name" : "Float",
-        "description" : "Built-in Float",
-        "fields" : null,
-        "inputFields" : null,
-        "interfaces" : null,
-        "enumValues" : null,
-        "possibleTypes" : null
-      }, {
-        "kind" : "INPUT_OBJECT",
         "name" : "ModelBooleanInput",
         "description" : null,
         "fields" : null,
@@ -1868,213 +1969,6 @@
             "kind" : "SCALAR",
             "name" : "Boolean",
             "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "attributeExists",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Boolean",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "attributeType",
-          "description" : null,
-          "type" : {
-            "kind" : "ENUM",
-            "name" : "ModelAttributeTypes",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        } ],
-        "interfaces" : null,
-        "enumValues" : null,
-        "possibleTypes" : null
-      }, {
-        "kind" : "ENUM",
-        "name" : "ModelSortDirection",
-        "description" : null,
-        "fields" : null,
-        "inputFields" : null,
-        "interfaces" : null,
-        "enumValues" : [ {
-          "name" : "ASC",
-          "description" : null,
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "DESC",
-          "description" : null,
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        } ],
-        "possibleTypes" : null
-      }, {
-        "kind" : "INPUT_OBJECT",
-        "name" : "ModelIntInput",
-        "description" : null,
-        "fields" : null,
-        "inputFields" : [ {
-          "name" : "ne",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Int",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "eq",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Int",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "le",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Int",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "lt",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Int",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "ge",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Int",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "gt",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Int",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "between",
-          "description" : null,
-          "type" : {
-            "kind" : "LIST",
-            "name" : null,
-            "ofType" : {
-              "kind" : "SCALAR",
-              "name" : "Int",
-              "ofType" : null
-            }
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "attributeExists",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Boolean",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "attributeType",
-          "description" : null,
-          "type" : {
-            "kind" : "ENUM",
-            "name" : "ModelAttributeTypes",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        } ],
-        "interfaces" : null,
-        "enumValues" : null,
-        "possibleTypes" : null
-      }, {
-        "kind" : "INPUT_OBJECT",
-        "name" : "ModelFloatInput",
-        "description" : null,
-        "fields" : null,
-        "inputFields" : [ {
-          "name" : "ne",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Float",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "eq",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Float",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "le",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Float",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "lt",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Float",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "ge",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Float",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "gt",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Float",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "between",
-          "description" : null,
-          "type" : {
-            "kind" : "LIST",
-            "name" : null,
-            "ofType" : {
-              "kind" : "SCALAR",
-              "name" : "Float",
-              "ofType" : null
-            }
           },
           "defaultValue" : null
         }, {
@@ -2193,6 +2087,305 @@
             "ofType" : {
               "kind" : "SCALAR",
               "name" : "Int",
+              "ofType" : null
+            }
+          },
+          "defaultValue" : null
+        } ],
+        "interfaces" : null,
+        "enumValues" : null,
+        "possibleTypes" : null
+      }, {
+        "kind" : "INPUT_OBJECT",
+        "name" : "ModelFloatInput",
+        "description" : null,
+        "fields" : null,
+        "inputFields" : [ {
+          "name" : "ne",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Float",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "eq",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Float",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "le",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Float",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "lt",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Float",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "ge",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Float",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "gt",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Float",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "between",
+          "description" : null,
+          "type" : {
+            "kind" : "LIST",
+            "name" : null,
+            "ofType" : {
+              "kind" : "SCALAR",
+              "name" : "Float",
+              "ofType" : null
+            }
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "attributeExists",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "attributeType",
+          "description" : null,
+          "type" : {
+            "kind" : "ENUM",
+            "name" : "ModelAttributeTypes",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        } ],
+        "interfaces" : null,
+        "enumValues" : null,
+        "possibleTypes" : null
+      }, {
+        "kind" : "SCALAR",
+        "name" : "Float",
+        "description" : "Built-in Float",
+        "fields" : null,
+        "inputFields" : null,
+        "interfaces" : null,
+        "enumValues" : null,
+        "possibleTypes" : null
+      }, {
+        "kind" : "INPUT_OBJECT",
+        "name" : "ModelIntInput",
+        "description" : null,
+        "fields" : null,
+        "inputFields" : [ {
+          "name" : "ne",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Int",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "eq",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Int",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "le",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Int",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "lt",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Int",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "ge",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Int",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "gt",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Int",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "between",
+          "description" : null,
+          "type" : {
+            "kind" : "LIST",
+            "name" : null,
+            "ofType" : {
+              "kind" : "SCALAR",
+              "name" : "Int",
+              "ofType" : null
+            }
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "attributeExists",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "attributeType",
+          "description" : null,
+          "type" : {
+            "kind" : "ENUM",
+            "name" : "ModelAttributeTypes",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        } ],
+        "interfaces" : null,
+        "enumValues" : null,
+        "possibleTypes" : null
+      }, {
+        "kind" : "INPUT_OBJECT",
+        "name" : "ModelSubscriptionFloatInput",
+        "description" : null,
+        "fields" : null,
+        "inputFields" : [ {
+          "name" : "ne",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Float",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "eq",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Float",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "le",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Float",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "lt",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Float",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "ge",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Float",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "gt",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Float",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "between",
+          "description" : null,
+          "type" : {
+            "kind" : "LIST",
+            "name" : null,
+            "ofType" : {
+              "kind" : "SCALAR",
+              "name" : "Float",
+              "ofType" : null
+            }
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "in",
+          "description" : null,
+          "type" : {
+            "kind" : "LIST",
+            "name" : null,
+            "ofType" : {
+              "kind" : "SCALAR",
+              "name" : "Float",
+              "ofType" : null
+            }
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "notIn",
+          "description" : null,
+          "type" : {
+            "kind" : "LIST",
+            "name" : null,
+            "ofType" : {
+              "kind" : "SCALAR",
+              "name" : "Float",
               "ofType" : null
             }
           },
@@ -2985,72 +3178,6 @@
         "onFragment" : false,
         "onField" : true
       }, {
-        "name" : "aws_subscribe",
-        "description" : "Tells the service which mutation triggers this subscription.",
-        "locations" : [ "FIELD_DEFINITION" ],
-        "args" : [ {
-          "name" : "mutations",
-          "description" : "List of mutations which will trigger this subscription when they are called.",
-          "type" : {
-            "kind" : "LIST",
-            "name" : null,
-            "ofType" : {
-              "kind" : "SCALAR",
-              "name" : "String",
-              "ofType" : null
-            }
-          },
-          "defaultValue" : null
-        } ],
-        "onOperation" : false,
-        "onFragment" : false,
-        "onField" : false
-      }, {
-        "name" : "aws_publish",
-        "description" : "Tells the service which subscriptions will be published to when this mutation is called. This directive is deprecated use @aws_susbscribe directive instead.",
-        "locations" : [ "FIELD_DEFINITION" ],
-        "args" : [ {
-          "name" : "subscriptions",
-          "description" : "List of subscriptions which will be published to when this mutation is called.",
-          "type" : {
-            "kind" : "LIST",
-            "name" : null,
-            "ofType" : {
-              "kind" : "SCALAR",
-              "name" : "String",
-              "ofType" : null
-            }
-          },
-          "defaultValue" : null
-        } ],
-        "onOperation" : false,
-        "onFragment" : false,
-        "onField" : false
-      }, {
-        "name" : "aws_api_key",
-        "description" : "Tells the service this field/object has access authorized by an API key.",
-        "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
-        "args" : [ ],
-        "onOperation" : false,
-        "onFragment" : false,
-        "onField" : false
-      }, {
-        "name" : "aws_iam",
-        "description" : "Tells the service this field/object has access authorized by sigv4 signing.",
-        "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
-        "args" : [ ],
-        "onOperation" : false,
-        "onFragment" : false,
-        "onField" : false
-      }, {
-        "name" : "aws_lambda",
-        "description" : "Tells the service this field/object has access authorized by a Lambda Authorizer.",
-        "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
-        "args" : [ ],
-        "onOperation" : false,
-        "onFragment" : false,
-        "onField" : false
-      }, {
         "name" : "deprecated",
         "description" : null,
         "locations" : [ "FIELD_DEFINITION", "ENUM_VALUE" ],
@@ -3070,6 +3197,14 @@
       }, {
         "name" : "aws_oidc",
         "description" : "Tells the service this field/object has access authorized by an OIDC token.",
+        "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
+        "args" : [ ],
+        "onOperation" : false,
+        "onFragment" : false,
+        "onField" : false
+      }, {
+        "name" : "aws_iam",
+        "description" : "Tells the service this field/object has access authorized by sigv4 signing.",
         "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
         "args" : [ ],
         "onOperation" : false,
@@ -3097,12 +3232,70 @@
         "onFragment" : false,
         "onField" : false
       }, {
+        "name" : "aws_api_key",
+        "description" : "Tells the service this field/object has access authorized by an API key.",
+        "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
+        "args" : [ ],
+        "onOperation" : false,
+        "onFragment" : false,
+        "onField" : false
+      }, {
+        "name" : "aws_lambda",
+        "description" : "Tells the service this field/object has access authorized by a Lambda Authorizer.",
+        "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
+        "args" : [ ],
+        "onOperation" : false,
+        "onFragment" : false,
+        "onField" : false
+      }, {
+        "name" : "aws_publish",
+        "description" : "Tells the service which subscriptions will be published to when this mutation is called. This directive is deprecated use @aws_susbscribe directive instead.",
+        "locations" : [ "FIELD_DEFINITION" ],
+        "args" : [ {
+          "name" : "subscriptions",
+          "description" : "List of subscriptions which will be published to when this mutation is called.",
+          "type" : {
+            "kind" : "LIST",
+            "name" : null,
+            "ofType" : {
+              "kind" : "SCALAR",
+              "name" : "String",
+              "ofType" : null
+            }
+          },
+          "defaultValue" : null
+        } ],
+        "onOperation" : false,
+        "onFragment" : false,
+        "onField" : false
+      }, {
         "name" : "aws_auth",
         "description" : "Directs the schema to enforce authorization on a field",
         "locations" : [ "FIELD_DEFINITION" ],
         "args" : [ {
           "name" : "cognito_groups",
           "description" : "List of cognito user pool groups which have access on this field",
+          "type" : {
+            "kind" : "LIST",
+            "name" : null,
+            "ofType" : {
+              "kind" : "SCALAR",
+              "name" : "String",
+              "ofType" : null
+            }
+          },
+          "defaultValue" : null
+        } ],
+        "onOperation" : false,
+        "onFragment" : false,
+        "onField" : false
+      }, {
+        "name" : "aws_subscribe",
+        "description" : "Tells the service which mutation triggers this subscription.",
+        "locations" : [ "FIELD_DEFINITION" ],
+        "args" : [ {
+          "name" : "mutations",
+          "description" : "List of mutations which will trigger this subscription when they are called.",
           "type" : {
             "kind" : "LIST",
             "name" : null,
