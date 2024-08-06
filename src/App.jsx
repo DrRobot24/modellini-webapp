@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { withAuthenticator } from '@aws-amplify/ui-react';
-import { fetchUserAttributes, getCurrentUser, signOut } from 'aws-amplify/auth';
+import { fetchAuthSession, getCurrentUser, signOut } from 'aws-amplify/auth';
 import { generateClient } from 'aws-amplify/api';
 import { ModellinoCreateForm } from './ui-components';
 import { createModellino, deleteModellino } from './graphql/mutations';
@@ -36,8 +36,10 @@ function App({ signOut: amplifySignOut, user: initialUser }) {
   async function loadUserInfo() {
     try {
       const currentUser = await getCurrentUser();
-      const userAttributes = await fetchUserAttributes();
-      setUser({ ...currentUser, attributes: userAttributes });
+      const session = await fetchAuthSession();
+      console.log('Current user:', currentUser);
+      console.log('Auth session:', session);
+      setUser(currentUser);
     } catch (e) {
       console.error('Error fetching user data', e);
       setError('Errore nel caricamento delle informazioni dell\'utente');
@@ -47,25 +49,33 @@ function App({ signOut: amplifySignOut, user: initialUser }) {
 
   async function fetchModellini() {
     try {
+      const session = await fetchAuthSession();
       const modellinoData = await client.graphql({
         query: listModellinos,
-        authMode: 'AMAZON_COGNITO_USER_POOLS'
+        authMode: 'AMAZON_COGNITO_USER_POOLS',
+        authToken: session.tokens.idToken.toString()
       });
       
       setModellini(modellinoData.data.listModellinos.items);
     } catch (error) {
       console.error('error fetching modellini', error);
-      setError('Errore nel caricamento dei modellini: ' + error.message);
+      if (error.message.includes('Not Authorized')) {
+        setError('Non sei autorizzato ad accedere a questa risorsa. Assicurati di aver effettuato il login correttamente.');
+      } else {
+        setError('Errore nel caricamento dei modellini: ' + error.message);
+      }
       throw error;
     }
   }
 
   const handleCreateModellino = async (fields) => {
     try {
+      const session = await fetchAuthSession();
       await client.graphql({
         query: createModellino,
         variables: { input: fields },
-        authMode: 'AMAZON_COGNITO_USER_POOLS'
+        authMode: 'AMAZON_COGNITO_USER_POOLS',
+        authToken: session.tokens.idToken.toString()
       });
       setSuccessMessage('Modellino creato con successo!');
       fetchModellini();
@@ -81,10 +91,12 @@ function App({ signOut: amplifySignOut, user: initialUser }) {
 
   const handleDeleteModellino = async (id) => {
     try {
+      const session = await fetchAuthSession();
       await client.graphql({
         query: deleteModellino,
         variables: { input: { id } },
-        authMode: 'AMAZON_COGNITO_USER_POOLS'
+        authMode: 'AMAZON_COGNITO_USER_POOLS',
+        authToken: session.tokens.idToken.toString()
       });
       setSuccessMessage('Modellino eliminato con successo!');
       fetchModellini();
