@@ -1,9 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "@aws-amplify/ui-react";
+import { getCurrentUser } from 'aws-amplify/auth';
 
 function Header({ signOut, user }) {
-  // Aggiungiamo un controllo per vedere se user e user.attributes esistono
-  const userEmail = user?.attributes?.email || 'Utente';
+  const [userEmail, setUserEmail] = useState('Utente');
+
+  useEffect(() => {
+    async function fetchUserEmail() {
+      try {
+        const { username, attributes } = await getCurrentUser();
+        setUserEmail(attributes?.email || username || 'Utente');
+      } catch (error) {
+        console.error('Errore nel recupero delle informazioni utente:', error);
+        setUserEmail('Utente');
+      }
+    }
+
+    fetchUserEmail();
+  }, []);
 
   return (
     <header className="bg-slate-900 text-white p-4">
