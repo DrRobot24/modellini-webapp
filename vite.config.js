@@ -1,14 +1,20 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import commonjs from '@rollup/plugin-commonjs'
+import { nodePolyfills } from 'vite-plugin-node-polyfills'
 
 export default defineConfig({
-  plugins: [react(), commonjs()],
-  base: '/',
+  plugins: [
+    react(),
+    nodePolyfills({
+      include: ['buffer', 'process', 'util', 'stream', 'events'],
+    }),
+  ],
   build: {
-    outDir: 'dist',
-    assetsDir: 'assets',
-    emptyOutDir: true,
+    rollupOptions: {
+      input: {
+        main: './index.html',
+      },
+    },
   },
   resolve: {
     alias: {
@@ -16,6 +22,6 @@ export default defineConfig({
     },
   },
   define: {
-    global: 'window',
+    global: 'globalThis',
   },
 })
