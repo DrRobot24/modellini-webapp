@@ -122,7 +122,7 @@ function App({ signOut: amplifySignOut, user: initialUser }) {
     <div>
       <Header signOut={handleSignOut} user={user} />
       <div className="container mx-auto p-4">
-        <h1 className="text-2xl font-bold mb-4">Modellini da Competizione</h1>
+        <h1 className="text-2xl font-bold mb-4">Modellini da Competizione !</h1>
         {error && <p className="text-red-500 mb-4">{error}</p>}
         {successMessage && (
           <p className="text-green-500 mb-4 bg-green-100 border border-green-400 p-2 rounded">
