@@ -28,7 +28,10 @@ const awsmobile = {
     },
     "aws_cognito_verification_mechanisms": [
         "EMAIL"
-    ]
+    ],
+    "aws_content_delivery_bucket": "modelliniwebapp-20240809102225-hostingbucket-dev",
+    "aws_content_delivery_bucket_region": "eu-south-1",
+    "aws_content_delivery_url": "https://d38ji3r0gn6i49.cloudfront.net"
 };
 
 

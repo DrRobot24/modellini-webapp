@@ -8,7 +8,7 @@ import '@aws-amplify/ui-react/styles.css';
 import { ThemeProvider } from "@aws-amplify/ui-react";
 import { studioTheme } from "./ui-components";
 
-Amplify.configure(awsconfig)
+Amplify.configure(awsconfig);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

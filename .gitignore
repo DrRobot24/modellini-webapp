@@ -7,8 +7,9 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-# minkia ! node_modules
-dist
+#Dependencies
+#node_modules
+#dist
 dist-ssr
 *.local
 
@@ -31,12 +32,9 @@ amplify/mock-data
 amplify/mock-api-resources
 amplify/backend/amplify-meta.json
 amplify/backend/.temp
-build/
-dist/
-node_modules/
-# questo non si deve ignorare ! >>>> aws-exports.js 
-# manco questo > awsconfiguration.json
-# e questo pure ! > amplifyconfiguration.json
+#build/
+#dist/
+
 amplifyconfiguration.dart
 amplify-build-config.json
 amplify-gradle-config.json
@@ -44,3 +42,27 @@ amplifytools.xcconfig
 .secret-*
 **.sample
 #amplify-do-not-edit-end
+
+#amplify-do-not-edit-begin
+amplify/\#current-cloud-backend
+amplify/.config/local-*
+amplify/logs
+amplify/mock-data
+amplify/mock-api-resources
+amplify/backend/amplify-meta.json
+amplify/backend/.temp
+
+#build/
+#dist/
+#node_modules/
+#aws-exports.js
+#awsconfiguration.json
+#amplifyconfiguration.json
+amplifyconfiguration.dart
+amplify-build-config.json
+amplify-gradle-config.json
+amplifytools.xcconfig
+.secret-*
+**.sample
+#amplify-do-not-edit-end
+node_modules

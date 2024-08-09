@@ -1,4 +1,22 @@
 {
+  "main": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-modelliniwebapp-main-cab72-authRole",
+      "UnauthRoleArn": "arn:aws:iam::725044416827:role/amplify-modelliniwebapp-main-cab72-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::725044416827:role/amplify-modelliniwebapp-main-cab72-authRole",
+      "Region": "eu-south-1",
+      "DeploymentBucketName": "amplify-modelliniwebapp-main-cab72-deployment",
+      "UnauthRoleName": "amplify-modelliniwebapp-main-cab72-unauthRole",
+      "StackName": "amplify-modelliniwebapp-main-cab72",
+      "StackId": "arn:aws:cloudformation:eu-south-1:725044416827:stack/amplify-modelliniwebapp-main-cab72/60f75d70-55cf-11ef-9bc0-06da11f5c6ee",
+      "AmplifyAppId": "d1eznt7qyiv4v5"
+    },
+    "categories": {
+      "auth": {
+        "modelliniwebappbe0778ae": {}
+      }
+    }
+  },
   "dev": {
     "awscloudformation": {
       "AuthRoleName": "amplify-modelliniwebapp-dev-5763e-authRole",
@@ -17,6 +35,13 @@
       },
       "api": {
         "modelliniwebapp": {}
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d1eznt7qyiv4v5",
+          "type": "manual"
+        },
+        "S3AndCloudFront": {}
       }
     }
   }
