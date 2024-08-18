@@ -8,7 +8,12 @@
             "Outputs.UserPoolId"
         ]
     },
-    "AuthModeLastUpdated": "2024-08-03T09:42:33.385Z",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
     "S3DeploymentBucket": "amplify-modelliniwebapp-dev-5763e-deployment",
     "S3DeploymentRootKey": "amplify-appsync-files/702f1e6d56ef78614a286844582b8482032c533f"
 }

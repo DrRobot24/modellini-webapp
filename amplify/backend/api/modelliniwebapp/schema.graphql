@@ -33,4 +33,3 @@ type Modellino @model @auth(rules: [{allow: owner}]) {
   TipodiPartecipazione: Partecipazione!
   PremioSpeciale: Premispeciali
 }
- 

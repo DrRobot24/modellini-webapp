@@ -476,6 +476,5 @@
         }
       }
     }
-  },
-  "Description": "{\"createdOn\":\"Linux\",\"createdBy\":\"Amplify\",\"createdWith\":\"12.12.6\",\"stackType\":\"api-AppSync\",\"metadata\":{}}"
+  }
 }

@@ -220,7 +220,7 @@
             "Ref": "UnauthRoleName"
           },
           "S3DeploymentBucket": "amplify-modelliniwebapp-dev-5763e-deployment",
-          "S3DeploymentRootKey": "amplify-appsync-files/702f1e6d56ef78614a286844582b8482032c533f",
+          "S3DeploymentRootKey": "amplify-appsync-files/639f018b203c6a0afd59cc44fd44d2bf7bd7d6a1",
           "env": "dev"
         }
       }
